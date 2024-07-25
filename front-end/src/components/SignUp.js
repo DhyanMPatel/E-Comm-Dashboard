@@ -13,7 +13,7 @@ const SignUp = () => {
         if(auth){
             navigate('/')           /// if we click on SignUp then navigate to root automaticaly
         }
-    })
+    },[])
 
     let Submit = async (e) => {
         e.preventDefault();
@@ -27,6 +27,7 @@ const SignUp = () => {
         })
         const res = await data.json();
         localStorage.setItem("user",JSON.stringify(res))    // take String value
+        console.log(res);
         navigate("/")
     }
 
@@ -49,7 +50,7 @@ const SignUp = () => {
             <input className='Input' type='email' placeholder='Enter Email' value={email} onChange={(e) => setEmail(e.target.value)} />
             <div className='Input border-none p-0 flex '>
                 <input id='Password' autoComplete="true" className='Input m-0 w-10/12 rounded-tr-none rounded-br-none border-r-0' type="password" placeholder='Enter Password' value={password} onChange={(e) => setPassword(e.target.value)} />
-                <button id="Btn" className='btn-toggle w-2/12 focus:shadow-lg' onClick={() => seeOrNot()}>Show</button>
+                <button type="button" id="Btn" className='btn-toggle w-2/12 focus:shadow-lg' onClick={() => seeOrNot()}>Show</button>
             </div>
 
             <button className='btn-primary'>Send</button>

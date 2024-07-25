@@ -1,7 +1,13 @@
 import React from "react";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 const Nav = () => {
     const auth = localStorage.getItem('user')
+
+    const navigate = useNavigate();            // rerender this and check any this is remaining to rerender?
+    const logout = () =>{
+        localStorage.removeItem('user');       // remove user
+        navigate('/signup')                    // Navigate to Sign Up page
+    }
     return (
         <nav className="Navbar">
             <div className="logo NavbarBrand">E-Comm</div>
@@ -12,7 +18,7 @@ const Nav = () => {
                 <li className="NavLink"><Link to='/profile'>Profile</Link></li>
                 <li className="NavLink pr-1">
                     {auth ?
-                        <Link to='/logout'>Logout</Link>
+                        <Link onClick={logout} to='/signup'>Logout</Link>
                         : <Link to='/signup'>Sign Up</Link>
                     }
                 </li>

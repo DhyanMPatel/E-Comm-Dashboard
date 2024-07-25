@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 const Nav = () => {
     const auth = localStorage.getItem('user')
 
-    const navigate = useNavigate();            // rerender this and check any this is remaining to rerender?
+    const navigate = useNavigate();            // rerender this and check any thing is remaining to rerender?
     const logout = () =>{
         localStorage.removeItem('user');       // remove user
         navigate('/signup')                    // Navigate to Sign Up page

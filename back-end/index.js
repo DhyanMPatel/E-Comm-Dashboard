@@ -9,7 +9,7 @@ app.use(cors());
 
 app.post('/signup', async (req, res) => {
     const user = new User(req.body);        // take value from /signup page
-    const result = await user.save();
+    let result = await user.save();
 
     result = result.toObject();         // convert to object
     delete result.password;             // delete PW from object for response only

@@ -26,7 +26,7 @@ const SignUp = () => {
             },
         })
         const res = await data.json();
-        localStorage.setItem("user",JSON.stringify(res))    // take String value
+        localStorage.setItem("user",JSON.stringify(res))    // give key and String value pair
         console.log(res);
         navigate("/")
     }

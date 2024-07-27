@@ -13,10 +13,10 @@ app.post('/signup', async (req, res) => {
 
     result = result.toObject();         // convert to object
     delete result.password;             // delete PW from object for response only
-    
+
     res.send(result);
 })
-
+ 
 app.post('/login', async (req, res) => {
 
     if (req.body.password && req.body.email) {          /// if password & email will not give then not work

@@ -17,13 +17,15 @@ const Nav = () => {
                 <li className="NavLink"><Link to='/add'>Add Product</Link></li>
                 <li className="NavLink"><Link to='/update'>Update Product</Link></li>
                 <li className="NavLink"><Link to='/profile'>Profile</Link></li>
-                <li className="NavLink"><Link to='/login'>Login</Link></li>
-                <li className="NavLink pr-1">
-                    {auth ?
-                        <Link onClick={logout} to='/signup'>Logout</Link>   /// when u click on Logout button it will autometically navigate to Signup and delete previous user
-                        : <Link to='/signup'>Sign Up</Link>
-                    }
-                </li>
+
+                {auth ?
+                    <li className="NavLink pr-1"><Link onClick={logout} to='/signup'>Logout</Link></li>   /// when u click on Logout button it will autometically navigate to Signup and delete previous user
+                    : <>
+                        <li className="NavLink pr-1"><Link to='/signup'>Sign Up</Link></li>
+                        <li className="NavLink"><Link to='/login'>Login</Link></li>     {/* /// display Login or Not */}
+                    </>
+                }
+
 
             </ul>
         </nav>

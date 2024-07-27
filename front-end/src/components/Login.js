@@ -1,12 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
-    const Submit =(e)=>{
+    /// can't navigate user after login
+    useEffect(() => {
+        const auth = localStorage.getItem('user');
+        if (auth) {
+            navigate('/');
+        }
+    },[])
+
+    const Submit = async (e) => {
         e.preventDefault();
         console.log(email, password);
+
+        // API Integration
+        const data = await fetch("http://localhost:5000/login", {
+            method: "POST",
+            body: JSON.stringify({ email, password }),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+        const result = await data.json();
+        console.log(result);
+        localStorage.setItem('user', JSON.stringify(result));
+        navigate('/');
     }
 
     const seeOrNot = () => {
@@ -23,7 +46,7 @@ const Login = () => {
     return (
         <form className="flex flex-col items-center" onSubmit={Submit}>
             <h1 className='block text-5xl text-center p-6 '>Login</h1>
-            
+
             <input className='Input' type='email' placeholder='Enter Email' value={email} onChange={(e) => setEmail(e.target.value)} />
             <div className='Input border-none p-0 flex '>
                 <input id='Password' autoComplete="true" className='Input m-0 w-10/12 rounded-tr-none rounded-br-none border-r-0' type="password" placeholder='Enter Password' value={password} onChange={(e) => setPassword(e.target.value)} />

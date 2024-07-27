@@ -13,7 +13,7 @@ const SignUp = () => {
         if(auth){
             navigate('/')           /// if we click on SignUp then navigate to root automaticaly
         }
-    })
+    },[])
 
     let Submit = async (e) => {
         e.preventDefault();

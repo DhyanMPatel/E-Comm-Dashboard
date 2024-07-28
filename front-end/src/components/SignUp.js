@@ -44,7 +44,7 @@ const SignUp = () => {
     }
     return (
         <form className='flex flex-col items-center' onSubmit={Submit}>
-            <h1 className='block text-5xl text-center p-6 '>Form</h1>
+            <h1 className='block text-5xl text-center p-6 '>Create</h1>
 
             <input className='Input' type='text' placeholder='Enter Name' value={name} onChange={(e) => setName(e.target.value)} />
             <input className='Input' type='email' placeholder='Enter Email' value={email} onChange={(e) => setEmail(e.target.value)} />

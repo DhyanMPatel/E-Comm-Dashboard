@@ -9,7 +9,7 @@
     }
     
     .NavbarBrand{
-        @apply text-5xl m-1 justify-center md:justify-normal
+        @apply text-5xl m-2 justify-center md:justify-normal rounded-se-3xl rounded-es-3xl  bg-slate-100
     }
 
     .NavLink{

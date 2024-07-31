@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(cors());
 
 app.post('/signup', async (req, res) => {
-    const user = new User(req.body);        // take value from /signup page
+    let user = new User(req.body);        // take value from /signup page
     let result = await user.save();
 
     result = result.toObject();         // convert to object
@@ -22,7 +22,7 @@ app.post('/login', async (req, res) => {
 
     if (req.body.password && req.body.email) {          /// if password & email will not give then not work
 
-        const user = await User.findOne(req.body).select("-password")        // if we pass only name, provide all details with PW (If .select() not)
+        let user = await User.findOne(req.body).select("-password")        // if we pass only name, provide all details with PW (If .select() not)
         { user ? res.send(user) : res.send("Please Enter Correct Details") }
 
     } else {
@@ -32,10 +32,21 @@ app.post('/login', async (req, res) => {
 
 
 app.post('/add',async (req,res)=>{              // Add Products
-    const product = new Product(req.body);      // use product collection
-    const result = await product.save();
+    let product = new Product(req.body);      // use product collection
+    let result = await product.save();
     res.send(result);
 })
+
+
+app.get('/products',async (req,res)=>{
+    let products = await Product.find();
+    if(products.length>0){
+        res.send(products);
+    } else {
+        res.send({Result: "No Products found"})
+    }
+})
+
 
 app.listen(5000, () => {
     console.log('server is running');

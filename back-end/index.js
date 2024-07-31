@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 require('./db/config');
 const User = require('./db/user');
+const Product = require('./db/product')
 
 const app = express();
 app.use(express.json());
@@ -27,6 +28,13 @@ app.post('/login', async (req, res) => {
     } else {
         res.send("All Details are not Filled")
     }
+})
+
+
+app.post('/add',async (req,res)=>{              // Add Products
+    const product = new Product(req.body);      // use product collection
+    const result = await product.save();
+    res.send(result);
 })
 
 app.listen(5000, () => {

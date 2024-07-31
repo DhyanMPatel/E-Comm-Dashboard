@@ -4,7 +4,12 @@ module.exports = {
     "./src/**/*.js",
   ],
   theme: {
-    extend: {},
+    extend: {
+      click: {
+      },
+      animation:{
+      }
+    },
   },
   plugins: [],
 }

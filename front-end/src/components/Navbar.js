@@ -1,7 +1,8 @@
 import React from "react";
-import { Link, useNavigate } from 'react-router-dom'
+import { json, Link, useNavigate } from 'react-router-dom'
 const Nav = () => {
     const auth = localStorage.getItem('user')
+    const name = JSON.parse(auth);
 
     const navigate = useNavigate();            // rerender this and check any thing is remaining to rerender?
 
@@ -21,7 +22,7 @@ const Nav = () => {
                         <li className="NavLink"><Link to='/add'>Add Product</Link></li>
                         <li className="NavLink"><Link to='/update'>Update Product</Link></li>
                         <li className="NavLink"><Link to='/profile'>Profile</Link></li>
-                        <li className="NavLink pr-1"><Link onClick={logout} to='/signup'>Logout</Link></li>   {/*   /// when u click on Logout button it will autometically navigate to Signup and delete previous user    */}
+                        <li className="NavLink pr-1"><Link onClick={logout} to='/signup'>Logout {"("+name.name+")"}</Link></li>   {/*   /// when u click on Logout button it will autometically navigate to Signup and delete previous user    */}
                     </>
                     : <>
                         <li className="NavLink pr-1"><Link to='/signup'>Sign Up</Link></li>

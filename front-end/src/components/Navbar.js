@@ -22,7 +22,8 @@ const Nav = () => {
                         <li className="NavLink"><Link to='/add'>Add Product</Link></li>
                         <li className="NavLink"><Link to='/update'>Update Product</Link></li>
                         <li className="NavLink"><Link to='/profile'>Profile</Link></li>
-                        <li className="NavLink pr-1"><Link onClick={logout} to='/signup'>Logout {"("+name.name+")"}</Link></li>   {/*   /// when u click on Logout button it will autometically navigate to Signup and delete previous user    */}
+                        <li className="NavLink pr-1"><Link onClick={logout} to='/signup'>Logout {"(" + name.name + ")"}</Link></li>  {/*   /// when u click on Logout button it will autometically navigate to Signup and delete previous user    */}
+
                     </>
                     : <>
                         <li className="NavLink pr-1"><Link to='/signup'>Sign Up</Link></li>

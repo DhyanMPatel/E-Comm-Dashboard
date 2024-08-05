@@ -15,9 +15,13 @@
     .NavLink{
         @apply px-2 m-2 hover:text-xl hover:px-1 hover:mx-1
     }
+    
+    .Container{
+        min-height: 80vh;
+    }
 
     .Footer{
-        @apply absolute bottom-0 w-full items-center justify-center text-gray-700 bg-gray-300 min-h-10 text-xl flex
+        @apply sticky bottom-0 w-full items-center justify-center text-gray-700 bg-gray-300 min-h-10 text-xl flex
     }
 
     .Input{
@@ -31,6 +35,6 @@
     }
 
     .td{
-        @apply border w-28 flex justify-center  border border-x-gray-500
+        @apply w-28 flex justify-center items-center border border-x-gray-500
     }
 }

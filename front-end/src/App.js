@@ -10,11 +10,11 @@ import Products from './components/Products';
 
 function App() {
   return (
-    <div>
+    <div className='min-h-screen'>
       <BrowserRouter>
         <Nav />
         <Routes>
-          
+
           <Route element={<PrivateRoute />}>
             <Route path='/' element={<Products />} />
             <Route path='/add' element={<AddProduct />} />

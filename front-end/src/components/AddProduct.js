@@ -9,47 +9,49 @@ const AddProduct = () => {
 
     const addProduct = async () => {
 
-        try{
+        try {
             console.log(!name)              // return true if empty and vise versa
-        if (!name || !price || !category || !company) {        
-            setError(true);
-            return false                   // will not pass values to DB
-        }
-
-        console.log(name, price, category, company);
-        const userId = JSON.parse(localStorage.getItem('user'))._id
-        let data = await fetch('http://localhost:5000/add', {
-            method: 'post',
-            body: JSON.stringify({ name, price, category, company, userId }),
-            headers: {
-                'Content-Type': "application/json"
+            if (!name || !price || !category || !company) {
+                setError(true);
+                return false                   // will not pass values to DB
             }
-        })
-        data = await data.json();
-        console.log(data);
+
+            console.log(name, price, category, company);
+            const userId = JSON.parse(localStorage.getItem('user'))._id
+            let data = await fetch('http://localhost:5000/add', {
+                method: 'post',
+                body: JSON.stringify({ name, price, category, company, userId }),
+                headers: {
+                    'Content-Type': "application/json"
+                }
+            })
+            data = await data.json();
+            console.log(data);
         }
-        catch(e){
+        catch (e) {
             console.log(e)
             alert(e)
         }
     }
     return (
+        <div className="Container">
             <form className='flex flex-col items-center' onClick={addProduct}>
-            <h1 className="text-5xl m-4">Add Product</h1>
-            <input className="Input" type="text" placeholder="Enter Product Name" value={name} onChange={(e) => { setName(e.target.value) }} />
-            {error && !name && <span className="text-red-600 ml-44 -mt-3 text-sm">Enter valid Value</span>}         {/* This will check if error is true and !name is true then see span */}
+                <h1 className="text-5xl m-4">Add Product</h1>
+                <input className="Input" type="text" placeholder="Enter Product Name" value={name} onChange={(e) => { setName(e.target.value) }} />
+                {error && !name && <span className="text-red-600 ml-44 -mt-3 text-sm">Enter valid Value</span>}         {/* This will check if error is true and !name is true then see span */}
 
-            <input className="Input" type="text" placeholder="Enter Product Price" value={price} onChange={(e) => { setPrice(e.target.value) }} />
-            {error && !price && <span className="text-red-600 ml-44 -mt-3 text-sm">Enter Valid Price</span>}
+                <input className="Input" type="text" placeholder="Enter Product Price" value={price} onChange={(e) => { setPrice(e.target.value) }} />
+                {error && !price && <span className="text-red-600 ml-44 -mt-3 text-sm">Enter Valid Price</span>}
 
-            <input className="Input" type="text" placeholder="Enter Product Category" value={category} onChange={(e) => { setCategory(e.target.value) }} />
-            {error && !category && <span className="text-red-600 ml-44 -mt-3 text-sm">Enter Valid Category</span>}
+                <input className="Input" type="text" placeholder="Enter Product Category" value={category} onChange={(e) => { setCategory(e.target.value) }} />
+                {error && !category && <span className="text-red-600 ml-44 -mt-3 text-sm">Enter Valid Category</span>}
 
-            <input className="Input" type="text" placeholder="Enter Product Company" value={company} onChange={(e) => { setCompany(e.target.value) }} />
-            {error && !company && <span className="text-red-600 ml-44 -mt-3 text-sm">Enter Valid Company</span>}
+                <input className="Input" type="text" placeholder="Enter Product Company" value={company} onChange={(e) => { setCompany(e.target.value) }} />
+                {error && !company && <span className="text-red-600 ml-44 -mt-3 text-sm">Enter Valid Company</span>}
 
-            <button className="btn-primary">Add</button>
+                <button className="btn-primary">Add</button>
             </form>
+        </div>
     )
 }
 

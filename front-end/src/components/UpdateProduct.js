@@ -30,7 +30,7 @@ export const UpdateProduct = () => {
 
     const updateProduct = async (e) => {
         e.preventDefault();
-        try{
+        try {
             let data = await fetch(`http://localhost:5000/product/${params.id}`, {
                 method: 'Put',
                 body: JSON.stringify({ name, price, category, company }),
@@ -41,7 +41,7 @@ export const UpdateProduct = () => {
             let result = await data.json();
             // console.log(result);
             navigate('/')
-        }catch(e){
+        } catch (e) {
             console.log(e)
         }
     }
@@ -51,10 +51,12 @@ export const UpdateProduct = () => {
             <form className="flex flex-col justify-center items-center" onSubmit={updateProduct}>
                 <header className="text-5xl m-4">Update Form</header>
 
-                <input type="text" className="Input" placeholder="Update Name" value={name} onChange={e => setName(e.target.value)} />
-                <input type="text" className="Input" placeholder="Update Price" value={price} onChange={(e) => { setPrice(e.target.value) }} />
-                <input type="text" className="Input" placeholder="Update Category" value={category} onChange={(e) => { setCategory(e.target.value) }} />
-                <input type="text" className="Input" placeholder="Update Company" value={company} onChange={(e) => { setCompany(e.target.value) }} />
+                <div>
+                    <input type="text" className="Input" placeholder="Update Name" value={name} onChange={e => setName(e.target.value)} />
+                    <input type="text" className="Input" placeholder="Update Price" value={price} onChange={(e) => { setPrice(e.target.value) }} />
+                    <input type="text" className="Input" placeholder="Update Category" value={category} onChange={(e) => { setCategory(e.target.value) }} />
+                    <input type="text" className="Input" placeholder="Update Company" value={company} onChange={(e) => { setCompany(e.target.value) }} />
+                </div>
 
                 <button type="submit" className="btn-primary my-5">Update</button>
 

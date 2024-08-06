@@ -25,7 +25,7 @@
     }
 
     .Input{
-        @apply block mx-2 my-2 px-3 py-2 border border-gray-500 rounded-xl focus:outline-none focus:drop-shadow-lg 
+        @apply block w-full mx-2 my-2 px-3 py-2 border border-gray-500 rounded-xl focus:outline-none focus:drop-shadow-lg 
     }
     .btn-primary{
         @apply bg-gray-300 text-gray-600 my-1 px-8 py-2 border border-black rounded-lg shadow-sm shadow-black hover:shadow-md hover:shadow-black active:shadow-inner active:shadow-black

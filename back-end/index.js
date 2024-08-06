@@ -55,10 +55,18 @@ app.delete('/product/:id', async (req, res) => {            /// Provide products
 app.get('/product/:id', async (req, res) => {
     let result = await Product.findOne({ _id:req.params.id })
     if (result) {
-        res.send(result);
+        res.send(result);       // provide whole detail of given product id
     } else {
         res.send({Result:"Data No Found."})
     }           /// after that go to postman
+})
+
+app.put('/product/:id',async (req,res)=>{
+    let result = await Product.updateOne(
+        {_id:req.params.id},        // how will change
+        {$set:req.body}             // set changes
+    )
+    res.send(result);
 })
 
 app.listen(5000, () => {

@@ -8,7 +8,6 @@ const AddProduct = () => {
     const [error, setError] = useState(false);
 
     const addProduct = async () => {
-
         try {
             console.log(!name)              // return true if empty and vise versa
             if (!name || !price || !category || !company) {

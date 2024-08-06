@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Products = () => {
     const [products, setProducts] = useState([]);
@@ -12,13 +13,13 @@ const Products = () => {
     }
     // console.log("products : ", products);
 
-    const deleteProduct=async(id)=>{
+    const deleteProduct = async (id) => {
         // console.log(id);
-        let result = await fetch(`http://localhost:5000/product/${id}`,{
-            method:"DELETE",
+        let result = await fetch(`http://localhost:5000/product/${id}`, {
+            method: "DELETE",
         })
-        result  = await result.json();
-        if(result){
+        result = await result.json();
+        if (result) {
             getProducts();          /// this will refresh again
         }
     }
@@ -34,22 +35,25 @@ const Products = () => {
                         <td className="td">Price</td>
                         <td className="td">Category</td>
                         <td className="td">Company</td>
-                        <td className="td">Operation</td>
+                        <td className="td w-1/5">Operation</td>
                     </tr>
                 </thead>
                 <tbody>
-                {
-                    products.map((item, index) =>
-                        <tr className="flex justify-center" key={index}>
-                            <td className="td">{index+1}</td>
-                            <td className="td">{item.name}</td>
-                            <td className="td">{item.price}</td>
-                            <td className="td">{item.category}</td>
-                            <td className="td">{item.company}</td>
-                            <td className="td"><button className="btn-primary" onClick={()=>deleteProduct(item._id)} >Delete</button></td>          {/* take id from  */}
-                        </tr>
-                    )
-                }
+                    {
+                        products.map((item, index) =>
+                            <tr className="flex justify-center" key={index}>
+                                <td className="td">{index + 1}</td>
+                                <td className="td">{item.name}</td>
+                                <td className="td">{item.price}</td>
+                                <td className="td">{item.category}</td>
+                                <td className="td">{item.company}</td>
+                                <td className="td w-1/5">
+                                    <button className="btn-primary mx-1" onClick={() => deleteProduct(item._id)} >Delete</button>        {/* take id from  */}
+                                    <Link className="btn-primary mx-1" to={`/update/${item._id}`}>Update</Link>
+                                </td>
+                            </tr>
+                        )
+                    }
                 </tbody>
             </table>
         </div>

@@ -7,6 +7,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Login from './components/Login';
 import AddProduct from './components/AddProduct';
 import Products from './components/Products';
+import { UpdateProduct } from './components/UpdateProduct';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
           <Route element={<PrivateRoute />}>
             <Route path='/' element={<Products />} />
             <Route path='/add' element={<AddProduct />} />
-            <Route path='/update' element={<h1 className="p-4 text-2xl">Update Product Page</h1>} />
+            <Route path='/update/:id' element={<UpdateProduct />} />
             <Route path='/logout' element={<h1 className="p-4 text-2xl">Logout Page</h1>} />
             <Route path='/profile' element={<h1 className="p-4 text-2xl">Profile Page</h1>} />
           </Route>

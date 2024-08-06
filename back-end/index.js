@@ -17,7 +17,7 @@ app.post('/signup', async (req, res) => {
 
     res.send(result);
 })
- 
+
 app.post('/login', async (req, res) => {
 
     if (req.body.password && req.body.email) {          /// if password & email will not give then not work
@@ -31,25 +31,34 @@ app.post('/login', async (req, res) => {
 })
 
 
-app.post('/add',async (req,res)=>{              // Add Products
+app.post('/add', async (req, res) => {              // Add Products
     let product = new Product(req.body);      // use product collection
     let result = await product.save();
     res.send(result);
 })
 
 
-app.get('/products',async (req,res)=>{
+app.get('/products', async (req, res) => {
     let products = await Product.find();
-    if(products.length>0){
+    if (products.length > 0) {
         res.send(products);
     } else {
-        res.send({Result: "No Products found"})
+        res.send({ Result: "No Products found" })
     }
 })
 
-app.delete('/product/:id',async (req,res)=>{            /// Provide products id
-    const result = await Product.deleteOne({_id:req.params.id})
+app.delete('/product/:id', async (req, res) => {            /// Provide products id
+    let result = await Product.deleteOne({ _id: req.params.id })
     res.send(result);
+})
+
+app.get('/product/:id', async (req, res) => {
+    let result = await Product.findOne({ _id:req.params.id })
+    if (result) {
+        res.send(result);
+    } else {
+        res.send({Result:"Data No Found."})
+    }           /// after that go to postman
 })
 
 app.listen(5000, () => {

@@ -15,7 +15,7 @@ const Products = () => {
 
     const deleteProduct = async (id) => {
         // console.log(id);
-        let result = await fetch(`http://localhost:5000/product/${id}`, {
+        let result = await fetch(`http://localhost:5000/product/${id}`, {       // of perticular product id
             method: "DELETE",
         })
         result = await result.json();

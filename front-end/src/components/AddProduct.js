@@ -50,7 +50,7 @@ const AddProduct = () => {
                     {error && !company && <span className="text-red-600 ml-44 -mt-3 text-sm">Enter Valid Company</span>}
 
                 </div>
-                <button className="btn-primary">Add</button>
+                <button className="btn-primary px-6">Add</button>
             </form>
         </div>
     )

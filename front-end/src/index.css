@@ -28,13 +28,13 @@
         @apply block w-full mx-2 my-2 px-3 py-2 border border-gray-500 rounded-xl focus:outline-none focus:drop-shadow-lg 
     }
     .btn-primary{
-        @apply bg-gray-300 text-gray-600 my-1 px-8 py-2 border border-black rounded-lg shadow-sm shadow-black hover:shadow-md hover:shadow-black active:shadow-inner active:shadow-black
+        @apply bg-gray-300 text-gray-600 my-1 py-2 border border-black rounded-lg shadow-sm shadow-black hover:shadow-md hover:shadow-black active:shadow-inner active:shadow-black
     }
     .btn-toggle{
         @apply bg-gray-300 text-gray-600 m-0 rounded-tl-none rounded-tr-xl rounded-br-xl rounded-bl-none  border border-black border-l-0
     }
 
     .td{
-        @apply w-28 flex justify-center items-center border border-x-gray-500
+        @apply w-1/6 flex justify-center items-center border border-x-gray-500
     }
 }

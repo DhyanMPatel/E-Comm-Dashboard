@@ -55,7 +55,7 @@ const Login = () => {
             </div>
             </div>
 
-            <button className='btn-primary'>Send</button>
+            <button className='btn-primary w-20'>Send</button>
         </form>
     )
 }

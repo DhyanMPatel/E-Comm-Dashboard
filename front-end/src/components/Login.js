@@ -22,6 +22,7 @@ const Login = () => {
         const data = await fetch("http://localhost:5000/login", {
             method: "POST",
             body: JSON.stringify({ email, password }),
+            /// No neccesory to add token in headers here
             headers: {
                 'content-type': 'application/json'
             }

@@ -7,7 +7,6 @@ const SignUp = () => {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-
     useEffect(()=>{
         const auth = localStorage.getItem('user')
         if(auth){
@@ -21,6 +20,7 @@ const SignUp = () => {
         const data = await fetch("http://localhost:5000/signup", {      // fetch data from front-end
             method: 'post',
             body: JSON.stringify({ name, email, password }),
+            /// No neccesory to add token in headers here
             headers: {
                 'Content-Type': 'application/json'
             },

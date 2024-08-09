@@ -8,7 +8,11 @@ const Products = () => {
     }, [])
     const getProducts = async () => {
         let result = await fetch("http://localhost:5000/products",{
-            authorization:JSON.parse(localStorage.getItem("token"))
+            /// this now neccesory to add token in headers
+            headers:{
+                /// add bearer and use backtick to display products
+                authorization:`bearer ${JSON.parse(localStorage.getItem("token"))}`
+            }
         })
         result = await result.json();
         setProducts(result);
@@ -19,6 +23,11 @@ const Products = () => {
         // console.log(id);
         let result = await fetch(`http://localhost:5000/product/${id}`, {       // of perticular product id
             method: "DELETE",
+            /// this now neccesory to add token in headers
+            headers:{
+                /// add bearer and use backtick to display products
+                authorization:`bearer ${JSON.parse(localStorage.getItem("token"))}`
+            }
         })
         result = await result.json();
         if (result) {
@@ -29,7 +38,13 @@ const Products = () => {
     const searchHandle = async (event) => {
         let key = event.target.value;
         if (key) {
-            let result = await fetch(`http://localhost:5000/search/${key}`)
+            let result = await fetch(`http://localhost:5000/search/${key}`,{
+                /// this now neccesory to add token in headers
+                headers:{
+                    /// add bearer and use backtick to display products
+                    authorization:`bearer ${JSON.parse(localStorage.getItem("token"))}`
+                }
+            })
             result = await result.json();
             if (result) {
                 setProducts(result)

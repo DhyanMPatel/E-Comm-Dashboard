@@ -5,7 +5,7 @@ const User = require('./db/user');
 const Product = require('./db/product')
 
 const jwt = require("jsonwebtoken");
-const jwtKey = "e-comm"     // make it hidden to unknown person will not know
+const jwtKey = "e-comm";     // make it hidden to unknown person will not know
 
 const app = express();
 app.use(express.json());
@@ -53,14 +53,14 @@ app.post('/login', async (req, res) => {
 })
 
 
-app.post('/add', async (req, res) => {              // Add Products
+app.post('/add',verifyToken, async (req, res) => {              // Add Products
     let product = new Product(req.body);      // use product collection
     let result = await product.save();
     res.send(result);
 })
 
 
-app.get('/products', async (req, res) => {
+app.get('/products', verifyToken, async (req, res) => {
     let products = await Product.find();
     if (products.length > 0) {
         res.send(products);
@@ -69,12 +69,12 @@ app.get('/products', async (req, res) => {
     }
 })
 
-app.delete('/product/:id', async (req, res) => {            /// Provide products id
+app.delete('/product/:id', verifyToken, async (req, res) => {            /// Provide products id
     let result = await Product.deleteOne({ _id: req.params.id })
     res.send(result);
 })
 
-app.get('/product/:id', async (req, res) => {
+app.get('/product/:id', verifyToken, async (req, res) => {
     let result = await Product.findOne({ _id: req.params.id })
     if (result) {
         res.send(result);       // provide whole detail of given product id
@@ -83,7 +83,7 @@ app.get('/product/:id', async (req, res) => {
     }           /// after that go to postman
 })
 
-app.put('/product/:id', async (req, res) => {
+app.put('/product/:id', verifyToken, async (req, res) => {
     let result = await Product.updateOne(
         { _id: req.params.id },        // how will change
         { $set: req.body }             // set changes
@@ -91,10 +91,31 @@ app.put('/product/:id', async (req, res) => {
     res.send(result);
 })
 
-app.get("/search/:key", async (req, res) => {
+app.get("/search/:key", verifyToken, async (req, res) => {
     let product = await Product.find({ name: { $regex: `^${req.params.key}`, $options: 'i' } })
     res.send(product)
 })
+
+/// MiddleWare
+function verifyToken(req, res, next) {
+    let token = req.header('authorization');
+    if (token) {
+        token = token.split(' ')[1];
+        console.log("Middel Ware if ", token,jwtKey);
+
+        /// please check postman Authorization you send
+        jwt.verify(token, jwtKey, (err, valid) => {
+            /// check postman Authoziation and localStorage auth both same from your self
+            if (err) {
+                res.status(403).send({Error: "Invalid Token"})
+            } else {
+                next();
+            }
+        })
+    } else {
+        res.status(401).send({ Result: "Please Add Token with header" });
+    }
+}
 
 app.listen(5000, () => {
     console.log('server is running');

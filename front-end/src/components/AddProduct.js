@@ -21,7 +21,9 @@ const AddProduct = () => {
                 method: 'post',
                 body: JSON.stringify({ name, price, category, company, userId }),
                 headers: {
-                    'Content-Type': "application/json"
+                    'Content-Type': "application/json",
+                    /// this now neccesory to add token in headers
+                    authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`
                 }
             })
             data = await data.json();
@@ -50,7 +52,7 @@ const AddProduct = () => {
                     {error && !company && <span className="text-red-600 ml-44 -mt-3 text-sm">Enter Valid Company</span>}
 
                 </div>
-                <button className="btn-primary px-6">Add</button>
+                <button type="button" className="btn-primary px-6">Add</button>
             </form>
         </div>
     )

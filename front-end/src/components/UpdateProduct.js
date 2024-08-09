@@ -16,7 +16,12 @@ export const UpdateProduct = () => {
     const getProductDetails = async () => {
         // console.log(params);
         try {
-            let data = await fetch(`http://localhost:5000/product/${params.id}`)      /// get product details from back-end
+            let data = await fetch(`http://localhost:5000/product/${params.id}`,{
+                /// this now neccesory to add token in headers
+                headers:{
+                    authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`
+                }
+            })      /// get product details from back-end
             let result = await data.json();
             // console.log(result)
             setName(result.name);
@@ -35,7 +40,9 @@ export const UpdateProduct = () => {
                 method: 'Put',
                 body: JSON.stringify({ name, price, category, company }),
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    /// this now neccesory to add token in headers
+                    authorization: `bearer ${JSON.parse(localStorage.getItem('token'))}`
                 }
             })
             let result = await data.json();

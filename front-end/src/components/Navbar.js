@@ -8,7 +8,7 @@ const Nav = () => {
 
     const logout = () => {
         localStorage.removeItem('user');       // remove user
-        localStorage.removeItem('token');
+        // localStorage.removeItem('token');
         navigate('/signup')                    // Navigate to Sign Up page
     }
     return (

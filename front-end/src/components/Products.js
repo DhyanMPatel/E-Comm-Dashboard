@@ -4,7 +4,6 @@ import Footer from "./Footer";
 
 const Products = () => {
     const [products, setProducts] = useState([]);
-    const [category, setCategory] = useState("");
     useEffect(() => {
         getProducts();
     }, [])
@@ -55,20 +54,15 @@ const Products = () => {
             getProducts();
         }
     }
-
-    // const handleCategoryChange = (event) => {
-    //     setCategory(category=category(id));
-    //     console.log(category);
-    //   };
     
     return (
         <>
             <div className="flex justify-center flex-col p-1">
                 <h1 className="text-2xl flex justify-center m-4">List of Products</h1>
                 
-                    <span className="flex place-content-between w-5/12">
+                    <div className="flex place-content-between w-5/12">
                         <input className=" Input  mb-6" type="text" placeholder="Search Product Name" onChange={searchHandle} />
-                    </span>
+                    </div>
 
                 <table>
                     <thead>

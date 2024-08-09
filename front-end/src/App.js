@@ -21,7 +21,7 @@ function App() {
             <Route path='/add' element={<AddProduct />} />
             <Route path='/update/:id' element={<UpdateProduct />} />
             <Route path='/logout' element={<h1 className="p-4 text-2xl">Logout Page</h1>} />
-            <Route path='/profile' element={<h1 className="p-4 text-2xl">Profile Page</h1>} />
+            {/* <Route path='/profile' element={<h1 className="p-4 text-2xl">Profile Page</h1>} /> */}
           </Route>
 
           <Route path='/login' element={<Login />} />

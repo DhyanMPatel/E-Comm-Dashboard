@@ -77,7 +77,7 @@ const Products = () => {
                         </tbody>
                         : <tbody>
                             <tr className="flex justify-center">
-                            <td className="text-2xl font-extralight p-10">No Product Found</td>
+                                <td className="text-2xl font-extralight p-10">No Product Found</td>
                             </tr>
                         </tbody>
                 }

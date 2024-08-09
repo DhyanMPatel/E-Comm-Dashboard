@@ -4,10 +4,14 @@ require('./db/config');
 const User = require('./db/user');
 const Product = require('./db/product')
 
+const jwt = require("jsonwebtoken");
+const jwtKey = "e-comm"     // make it hidden to unknown person will not know
+
 const app = express();
 app.use(express.json());
 app.use(cors());
 
+/// add jwt token at SignUp
 app.post('/signup', async (req, res) => {
     let user = new User(req.body);        // take value from /signup page
     let result = await user.save();
@@ -15,15 +19,31 @@ app.post('/signup', async (req, res) => {
     result = result.toObject();         // convert to object
     delete result.password;             // delete PW from object for response only
 
-    res.send(result);
+    /// pass result obj, hidden jwtKey, expired time 2 hrs, function().
+    jwt.sign({ result }, jwtKey, { expiresIn: "2h" }, (err, token) => {
+        if (err) res.send(err);
+
+        res.send({ result, auth: token })      /// we pass result with unic jwt token
+    })
 })
 
+/// add jwt token at Login
 app.post('/login', async (req, res) => {
 
     if (req.body.password && req.body.email) {          /// if password & email will not give then not work
 
         let user = await User.findOne(req.body).select("-password")        // if we pass only name, provide all details with PW (If .select() not)
-        { user ? res.send(user) : res.send("Please Enter Correct Details") }
+        {
+            user ?
+                (
+                    jwt.sign({ user }, jwtKey, { expiresIn: "2h" }, (err, token) => {
+                        if (err) res.send(err);
+
+                        res.send({ user, auth: token })
+                    })
+                )
+                : res.send("Please Enter Correct Details")
+        }
 
     } else {
         res.send("All Details are not Filled")

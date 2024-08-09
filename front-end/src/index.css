@@ -15,17 +15,13 @@
     .NavLink{
         @apply px-2 m-2 hover:text-xl hover:px-1 hover:mx-1
     }
-    
-    .Container{
-        min-height: 80vh;
-    }
 
     .Footer{
-        @apply sticky bottom-0 w-full items-center justify-center text-gray-700 bg-gray-300 min-h-10 text-xl flex
+        @apply bottom-0 w-full items-center justify-center text-gray-700 bg-gray-300 min-h-10 text-xl flex
     }
 
     .Input{
-        @apply block w-full mx-2 my-2 px-3 py-2 border border-gray-500 rounded-xl focus:outline-none focus:drop-shadow-lg 
+        @apply block w-full my-2 px-3 py-2 border border-gray-500 rounded-xl focus:outline-none focus:drop-shadow-lg 
     }
     .btn-primary{
         @apply bg-gray-300 text-gray-600 my-1 py-2 border border-black rounded-lg shadow-sm shadow-black hover:shadow-md hover:shadow-black active:shadow-inner active:shadow-black

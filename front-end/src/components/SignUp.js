@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import Footer from "./Footer";
 
 const SignUp = () => {
     const [name, setName] = useState('');
@@ -7,12 +8,12 @@ const SignUp = () => {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    useEffect(()=>{
+    useEffect(() => {
         const auth = localStorage.getItem('user')
-        if(auth){
+        if (auth) {
             navigate('/')           /// if we click on SignUp then navigate to root automaticaly
         }
-    },[])
+    }, [])
 
     let Submit = async (e) => {
         e.preventDefault();
@@ -28,10 +29,10 @@ const SignUp = () => {
         const result = await data.json();
         console.log(result);
         /// set user and token
-        localStorage.setItem("user",JSON.stringify(result.result))    // give key and String value pair
-        localStorage.setItem("token",JSON.stringify(result.auth))
+        localStorage.setItem("user", JSON.stringify(result.result))    // give key and String value pair
+        localStorage.setItem("token", JSON.stringify(result.auth))
         navigate("/")
-        
+
     }
 
     const seeOrNot = () => {
@@ -46,20 +47,25 @@ const SignUp = () => {
         }
     }
     return (
-        <form className='flex flex-col items-center' onSubmit={Submit}>
-            <h1 className='block text-5xl text-center p-6 '>Create</h1>
+        <>
+            <form className='flex flex-col items-center' onSubmit={Submit}>
+                <h1 className='block text-5xl text-center p-6 '>Create</h1>
 
-            <div>
-            <input className='Input' type='text' placeholder='Enter Name' value={name} onChange={(e) => setName(e.target.value)} />
-            <input className='Input' type='email' placeholder='Enter Email' value={email} onChange={(e) => setEmail(e.target.value)} />
-            <div className='Input border-none p-0 flex '>
-                <input id='Password' autoComplete="true" className='Input m-0 w-10/12 rounded-tr-none rounded-br-none border-r-0' type="password" placeholder='Enter Password' value={password} onChange={(e) => setPassword(e.target.value)} />
-                <button type="button" id="Btn" className='btn-toggle w-2/12 focus:shadow-lg' onClick={() => seeOrNot()}>Show</button>
-            </div>
-            </div>
+                <div className="w-96">
+                    <input className='Input' type='text' placeholder='Enter Name' value={name} onChange={(e) => setName(e.target.value)} />
+                    <input className='Input' type='email' placeholder='Enter Email' value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <div className='Input border-none p-0 flex '>
+                        <input id='Password' autoComplete="true" className='Input m-0 w-10/12 rounded-tr-none rounded-br-none border-r-0' type="password" placeholder='Enter Password' value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <button type="button" id="Btn" className='btn-toggle w-2/12 focus:shadow-lg' onClick={() => seeOrNot()}>Show</button>
+                    </div>
+                </div>
 
-            <button className='btn-primary w-20'>Send</button>
-        </form>
+                <button className='btn-primary w-20'>Send</button>
+            </form>
+            <div className="Footer absolute bottom-0">
+                <Footer />
+            </div>
+        </>
     )
 }
 export default SignUp;

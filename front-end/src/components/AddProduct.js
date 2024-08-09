@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Footer from "./Footer";
 
 const AddProduct = () => {
     const [name, setName] = useState('');
@@ -35,26 +36,31 @@ const AddProduct = () => {
         }
     }
     return (
-        <div className="Container">
-            <form className='flex flex-col items-center' onClick={addProduct}>
-                <h1 className="text-5xl m-4">Add Product</h1>
-                <div>
-                    <input className="Input" type="text" placeholder="Enter Product Name" value={name} onChange={(e) => { setName(e.target.value) }} />
-                    {error && !name && <span className="text-red-600 ml-44 -mt-3 text-sm">Enter valid Value</span>}         {/* This will check if error is true and !name is true then see span */}
+        <>
+            <div className="Container">
+                <form className='flex flex-col items-center' onClick={addProduct}>
+                    <h1 className="text-5xl m-4">Add Product</h1>
+                    <div className="w-80">
+                        <input className="Input" type="text"  placeholder="Enter Product Name" value={name} onChange={(e) => { setName(e.target.value) }} />
+                        {error && !name && <div className="text-red-600 flex justify-end pr-2 -mt-3 text-sm">Enter valid Value</div>}         {/* This will check if error is true and !name is true then see span */}
 
-                    <input className="Input" type="text" placeholder="Enter Product Price" value={price} onChange={(e) => { setPrice(e.target.value) }} />
-                    {error && !price && <span className="text-red-600 ml-44 -mt-3 text-sm">Enter Valid Price</span>}
+                        <input className="Input" type="text" placeholder="Enter Product Price" value={price} onChange={(e) => { setPrice(e.target.value) }} />
+                        {error && !price && <div className="text-red-600 flex justify-end pr-2 -mt-3 text-sm">Enter Valid Price</div>}
 
-                    <input className="Input" type="text" placeholder="Enter Product Category" value={category} onChange={(e) => { setCategory(e.target.value) }} />
-                    {error && !category && <span className="text-red-600 ml-44 -mt-3 text-sm">Enter Valid Category</span>}
+                        <input className="Input" type="text" placeholder="Enter Product Category" value={category} onChange={(e) => { setCategory(e.target.value) }} />
+                        {error && !category && <div className="text-red-600 flex justify-end pr-2 -mt-3 text-sm">Enter Valid Category</div>}
 
-                    <input className="Input" type="text" placeholder="Enter Product Company" value={company} onChange={(e) => { setCompany(e.target.value) }} />
-                    {error && !company && <span className="text-red-600 ml-44 -mt-3 text-sm">Enter Valid Company</span>}
+                        <input className="Input" type="text" placeholder="Enter Product Company" value={company} onChange={(e) => { setCompany(e.target.value) }} />
+                        {error && !company && <div className="text-red-600 flex justify-end pr-2 -mt-3 text-sm">Enter Valid Company</div>}
 
-                </div>
-                <button type="button" className="btn-primary px-6">Add</button>
-            </form>
-        </div>
+                    </div>
+                    <button type="button" className="btn-primary px-6">Add</button>
+                </form>
+            </div>
+            <div className="Footer absolute bottom-0">
+                <Footer />
+            </div>
+        </>
     )
 }
 

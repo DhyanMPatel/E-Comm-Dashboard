@@ -25,10 +25,13 @@ const SignUp = () => {
                 'Content-Type': 'application/json'
             },
         })
-        const res = await data.json();
-        localStorage.setItem("user",JSON.stringify(res))    // give key and String value pair
-        console.log(res);
+        const result = await data.json();
+        console.log(result);
+        /// set user and token
+        localStorage.setItem("user",JSON.stringify(result.result))    // give key and String value pair
+        localStorage.setItem("token",JSON.stringify(result.auth))
         navigate("/")
+        
     }
 
     const seeOrNot = () => {

@@ -25,6 +25,7 @@ app.post('/signup', async (req, res) => {
 
         res.send({ result, auth: token })      /// we pass result with unic jwt token
     })
+    // res.send(result)
 })
 
 /// add jwt token at Login
@@ -41,6 +42,7 @@ app.post('/login', async (req, res) => {
 
                         res.send({ user, auth: token })
                     })
+                    // res.send(user)
                 )
                 : res.send("Please Enter Correct Details")
         }

@@ -12,7 +12,7 @@ const Login = () => {
         if (auth) {
             navigate('/');
         }
-    },[])
+    }, [])
 
     const Submit = async (e) => {
         e.preventDefault();
@@ -28,8 +28,15 @@ const Login = () => {
         })
         const result = await data.json();
         console.log(result);
-        localStorage.setItem('user', JSON.stringify(result));
-        navigate('/');
+        ///check auth is defined or not?
+        if (result.auth) {
+            /// pass useer with token
+            localStorage.setItem('user', JSON.stringify(result.user));
+            localStorage.setItem('token', JSON.stringify(result.auth));
+            navigate('/');
+        } else {
+            alert("Please Enter Correct Details")
+        }
     }
 
     const seeOrNot = () => {
@@ -48,11 +55,11 @@ const Login = () => {
             <h1 className='block text-5xl text-center p-6 '>Login</h1>
 
             <div>
-            <input className='Input' type='email' placeholder='Enter Email' value={email} onChange={(e) => setEmail(e.target.value)} />
-            <div className='Input border-none p-0 flex '>
-                <input id='Password' autoComplete="true" className='Input m-0 rounded-tr-none rounded-br-none border-r-0' type="password" placeholder='Enter Password' value={password} onChange={(e) => setPassword(e.target.value)} />
-                <button type="button" id="Btn" className='btn-toggle w-2/12 focus:shadow-lg' onClick={() => seeOrNot()}>Show</button>
-            </div>
+                <input className='Input' type='email' placeholder='Enter Email' value={email} onChange={(e) => setEmail(e.target.value)} />
+                <div className='Input border-none p-0 flex '>
+                    <input id='Password' autoComplete="true" className='Input m-0 rounded-tr-none rounded-br-none border-r-0' type="password" placeholder='Enter Password' value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <button type="button" id="Btn" className='btn-toggle w-2/12 focus:shadow-lg' onClick={() => seeOrNot()}>Show</button>
+                </div>
             </div>
 
             <button className='btn-primary w-20'>Send</button>

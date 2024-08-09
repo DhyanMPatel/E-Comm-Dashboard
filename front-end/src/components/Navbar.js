@@ -1,5 +1,5 @@
 import React from "react";
-import { json, Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 const Nav = () => {
     const auth = localStorage.getItem('user')
     const name = JSON.parse(auth);
@@ -8,6 +8,7 @@ const Nav = () => {
 
     const logout = () => {
         localStorage.removeItem('user');       // remove user
+        localStorage.removeItem('token');
         navigate('/signup')                    // Navigate to Sign Up page
     }
     return (
